@@ -40,6 +40,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 ```swift
+import UIKit
+import WWPrint
+import WWSignInWith3rd_Apple
+import WWSignInWith3rd_Wechat
+
 final class ViewController: UIViewController {
     
     override func viewDidLoad() {
