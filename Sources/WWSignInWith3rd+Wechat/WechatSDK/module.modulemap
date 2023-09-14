@@ -1,0 +1,6 @@
+module WechatSDK [system] {
+    header "Header.h"
+    link "Header"
+    export *
+}
+
