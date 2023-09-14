@@ -17,4 +17,47 @@ dependencies: [
 
 ### Example
 ```swift
+import UIKit
+import WWSignInWith3rd_Apple
+import WWSignInWith3rd_Wechat
+
+@main
+final class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        return WWSignInWith3rd.Wechat.shared.configure(appId: "<WechatAppId>", secret: "<WechatSecret>", universalLink: "<UniversalLink>")
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return WWSignInWith3rd.Wechat.shared.canOpenURL(app, open: url)
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        return WWSignInWith3rd.Wechat.shared.canOpenUniversalLink(application, continue: userActivity, restorationHandler: restorationHandler)
+    }
+}
+```
+```swift
+final class ViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        WWSignInWith3rd.Wechat.shared.log { wwPrint($0) }
+    }
+    
+    /// [設定Build Settings -> Other Linker Flags => -ObjC -all_load](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/WeChat_Login/Development_Guide.html)
+    /// - Parameter sender: UIButton
+    @IBAction func signInWithWechat(_ sender: UIButton) {
+        
+        WWSignInWith3rd.Wechat.shared.login(presenting: self) { result in
+            
+            switch result {
+            case .failure(let error): wwPrint(error)
+            case .success(let info): wwPrint(info)
+            }
+        }
+    }
+}
 ```

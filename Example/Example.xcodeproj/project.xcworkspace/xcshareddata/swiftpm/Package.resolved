@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "wechatopensdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yanyin1986/WechatOpenSDK",
+      "state" : {
+        "revision" : "8d2c4051094c8043326e40f21e6f8371d20a33a2",
+        "version" : "2.0.2"
+      }
+    },
+    {
+      "identity" : "wwprint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/William-Weng/WWPrint.git",
+      "state" : {
+        "revision" : "6b70fabaa1dbeac95b224384819e231a1220900a",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "wwsigninwith3rd_apple",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/William-Weng/WWSignInWith3rd_Apple",
+      "state" : {
+        "revision" : "1ce4cd07417ccce606d507db07f5c5b6b57e5a3e",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "wwsigninwith3rd_wechat",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/William-Weng/WWSignInWith3rd_Wechat",
+      "state" : {
+        "branch" : "main",
+        "revision" : "68915564d322a8116d467d4c308283dd73efaaa5"
+      }
+    }
+  ],
+  "version" : 2
+}
