@@ -1,6 +1,6 @@
 //
-//  WWSignInWith3rd+Wechat.swift
-//  WWSignInWith3rd+Wechat
+//  WWSignInWith3rd_Wechat.swift
+//  WWSignInWith3rd_Wechat
 //
 //  Created by William.Weng on 2023/9/13.
 //
