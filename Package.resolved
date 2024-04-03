@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yanyin1986/WechatOpenSDK",
       "state" : {
-        "revision" : "8d2c4051094c8043326e40f21e6f8371d20a33a2",
-        "version" : "2.0.2"
+        "revision" : "07d37db666076d9ec6b85ca935e5bcdb68af43bd",
+        "version" : "2.0.4"
       }
     },
     {

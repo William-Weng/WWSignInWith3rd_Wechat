@@ -1,6 +1,6 @@
 # WWSignInWith3rd+Wechat
 
-[![Swift-5.6](https://img.shields.io/badge/Swift-5.6-orange.svg?style=flat)](https://developer.apple.com/swift/) [![iOS-14.0](https://img.shields.io/badge/iOS-14.0-pink.svg?style=flat)](https://developer.apple.com/swift/) ![](https://img.shields.io/github/v/tag/William-Weng/WWSignInWith3rd_Wechat) [![Swift Package Manager-SUCCESS](https://img.shields.io/badge/Swift_Package_Manager-SUCCESS-blue.svg?style=flat)](https://developer.apple.com/swift/) [![LICENSE](https://img.shields.io/badge/LICENSE-MIT-yellow.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift-5.7](https://img.shields.io/badge/Swift-5.7-orange.svg?style=flat)](https://developer.apple.com/swift/) [![iOS-14.0](https://img.shields.io/badge/iOS-14.0-pink.svg?style=flat)](https://developer.apple.com/swift/) ![](https://img.shields.io/github/v/tag/William-Weng/WWSignInWith3rd_Wechat) [![Swift Package Manager-SUCCESS](https://img.shields.io/badge/Swift_Package_Manager-SUCCESS-blue.svg?style=flat)](https://developer.apple.com/swift/) [![LICENSE](https://img.shields.io/badge/LICENSE-MIT-yellow.svg?style=flat)](https://developer.apple.com/swift/)
 
 ### [Introduction - 簡介](https://swiftpackageindex.com/William-Weng)
 - [Use Wechat third-party login.](https://github.com/yanyin1986/WechatOpenSDK)
@@ -19,7 +19,7 @@ dependencies: [
 |函式|功能|
 |-|-|
 |configure(appId:secret:universalLink:)|參數設定|
-|login(presenting:completion:)|登入 - 網頁 / APP|
+|login(presenting:requestAction:completionAction:)|登入 - 網頁 / APP|
 |logout()|沒有登出功能|
 |openMiniProgram(with:path:type:completion:)|開啟微信小程序|
 |canOpenURL(_:open:options:)|在外部由URL Scheme開啟 -> application(_:open:options:)|

@@ -23,8 +23,9 @@ extension WWSignInWith3rd {
         private(set) var universalLink: String?
         private(set) var code: String?
         
+        private var requestBlock: ((BaseReq) -> Void)?
         private var completionBlock: ((Result<[String: Any]?, Error>) -> Void)?
-        
+
         private override init() {}
     }
 }
@@ -32,7 +33,7 @@ extension WWSignInWith3rd {
 // MARK: - WXApiDelegate
 extension WWSignInWith3rd.Wechat: WXApiDelegate {
     
-    public func onReq(_ req: BaseReq) { wwPrint(req) }
+    public func onReq(_ req: BaseReq) { requestBlock?(req) }
     public func onResp(_ resp: BaseResp) { loginInformation(with: resp) }
 }
 
@@ -58,6 +59,9 @@ public extension WWSignInWith3rd.Wechat {
         
         let isSuccess = WXApi.registerApp(appId, universalLink: universalLink)
         
+        requestBlock = nil
+        completionBlock = nil
+        
         if (isSuccess) {
             self.appId = appId
             self.secret = secret
@@ -66,14 +70,16 @@ public extension WWSignInWith3rd.Wechat {
         
         return isSuccess
     }
-
+    
     /// [登入 - 網頁 / APP](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Share_and_Favorites/iOS.html)
-    /// - [Parameters](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/ios-13-的-present-modally-變成更方便的卡片設計-fb6b31f0e20e):
-    ///   - viewController: [ViewController](https://github.com/Xinguang/WechatKit/blob/master/WechatKit/WechatAuth.swift)
-    ///   - completion: [Result<Data?, Error>](https://www.jianshu.com/p/1b744a97e63d)
-    func login(presenting viewController: UIViewController, completion: ((Result<[String: Any]?, Error>) -> Void)?) {
+    /// - Parameters:
+    ///   - viewController: [UIViewController](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/ios-13-的-present-modally-變成更方便的卡片設計-fb6b31f0e20e)
+    ///   - requestAction: [((BaseReq) -> Void)?](https://www.jianshu.com/p/1b744a97e63d)
+    ///   - completionAction: ((Result<[String: Any]?, Error>) -> Void)?
+    func login(presenting viewController: UIViewController, requestAction: ((BaseReq) -> Void)? = nil, completionAction: ((Result<[String: Any]?, Error>) -> Void)?) {
         
-        completionBlock = completion
+        requestBlock = requestAction
+        completionBlock = completionAction
         
         let request = SendAuthReq()
         request.scope = "snsapi_userinfo"
