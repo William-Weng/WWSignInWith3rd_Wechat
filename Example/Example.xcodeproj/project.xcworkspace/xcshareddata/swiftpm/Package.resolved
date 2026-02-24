@@ -11,15 +11,6 @@
       }
     },
     {
-      "identity" : "wwprint",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/William-Weng/WWPrint",
-      "state" : {
-        "revision" : "8f5928f5d36624d77f8fc563fd8e31a59cfac6b6",
-        "version" : "1.3.1"
-      }
-    },
-    {
       "identity" : "wwsigninwith3rd_apple",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWSignInWith3rd_Apple",
@@ -33,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWSignInWith3rd_Wechat",
       "state" : {
-        "revision" : "d903e0d69f94555ebe99231fcfeee5f9232033d6",
-        "version" : "1.1.1"
+        "revision" : "7e71edc8cc46cce9f82f8b214ab1c886915370d5",
+        "version" : "1.2.0"
       }
     }
   ],

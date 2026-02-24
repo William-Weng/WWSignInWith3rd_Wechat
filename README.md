@@ -6,7 +6,7 @@
 - [Use Wechat third-party login.](https://github.com/yanyin1986/WechatOpenSDK)
 - [使用微信的第三方登入。](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/WeChat_Login/Development_Guide.html)
 
-![](./Example.gif)
+https://github.com/user-attachments/assets/c41ca3ab-2388-4698-b86d-19d89606e755
 
 ### [Installation with Swift Package Manager](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/使用-spm-安裝第三方套件-xcode-11-新功能-2c4ffcf85b4b)
 ```js
@@ -14,6 +14,37 @@ dependencies: [
     .package(url: "https://github.com/William-Weng/WWSignInWith3rd_Wechat.git", .upToNextMajor(from: "1.2.0"))
 ]
 ```
+
+### 必要設定
+#### info.plist
+```xml
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>wechat</string>
+    <string>weixin</string>
+    <string>weixinUL</string>
+    <string>weixinULAPI</string>
+    <string>weixinURLParamsAPI</string>
+</array>
+
+<key>CFBundleURLTypes</key>
+<array>
+	<dict>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>CFBundleURLName</key>
+		<string>Wechat</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<string>&lt;WechatAppId&gt;</string>
+		</array>
+	</dict>
+</array>
+```
+
+![](https://github.com/user-attachments/assets/a656cf7d-0ef2-4c21-9ba6-765901018d3b)
+
+![](https://github.com/user-attachments/assets/ddbed636-0b3b-4802-b1d9-6ef76e33149b)
 
 ### Function - 可用函式
 |函式|功能|
