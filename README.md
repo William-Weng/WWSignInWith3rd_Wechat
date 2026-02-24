@@ -90,7 +90,6 @@ extension SceneDelegate {
 ```
 ```swift
 import UIKit
-import WWPrint
 import WWSignInWith3rd_Apple
 import WWSignInWith3rd_Wechat
 
@@ -98,7 +97,7 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        WWSignInWith3rd.Wechat.shared.log { wwPrint($0) }
+        WWSignInWith3rd.Wechat.shared.log { print($0) }
     }
     
     @IBAction func signInWithWechat(_ sender: UIButton) {
@@ -106,8 +105,8 @@ final class ViewController: UIViewController {
         WWSignInWith3rd.Wechat.shared.login(presenting: self) { result in
             
             switch result {
-            case .failure(let error): wwPrint(error)
-            case .success(let info): wwPrint(info)
+            case .failure(let error): print(error)
+            case .success(let info): print(info)
             }
         }
     }

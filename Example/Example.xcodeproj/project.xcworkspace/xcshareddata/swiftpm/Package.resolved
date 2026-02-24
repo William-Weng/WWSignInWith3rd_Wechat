@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWSignInWith3rd_Wechat",
       "state" : {
-        "revision" : "7e71edc8cc46cce9f82f8b214ab1c886915370d5",
-        "version" : "1.2.0"
+        "revision" : "87464548debe778d199b58731e8ddb0471608fbd",
+        "version" : "1.2.1"
       }
     }
   ],
