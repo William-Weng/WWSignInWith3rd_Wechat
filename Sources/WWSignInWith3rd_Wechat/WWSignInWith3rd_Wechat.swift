@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import WWPrint
 import WWSignInWith3rd_Apple
-import WechatSDK
+import WechatOpenSDK
 
 // MARK: - 第三方登入
 extension WWSignInWith3rd {
@@ -41,14 +40,14 @@ extension WWSignInWith3rd.Wechat: WXApiDelegate {
 extension WWSignInWith3rd.Wechat: UIAdaptivePresentationControllerDelegate {
     
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        self.completionBlock?(.failure(Constant.MyError.isCancel))
+        self.completionBlock?(.failure(WWSignInWith3rd.CustomError.isCancel))
     }
 }
 
 // MARK: - 公開函式
 public extension WWSignInWith3rd.Wechat {
     
-    /// [參數設定](https://asueliu.pixnet.net/blog/post/67956720-[微信小程序]-ios跳轉到微信小程序(swift))
+    /// [線上註冊參數](https://asueliu.pixnet.net/blog/post/67956720-[微信小程序]-ios跳轉到微信小程序(swift))
     /// - [Build Setting -> Other Linker Flags => "-ObjC -all_load"](https://www.jianshu.com/p/1c1018580a58)
     /// - [<key>LSApplicationQueriesSchemes</key><array><string>wechat</string><string>weixin</string></array>](https://www.jianshu.com/p/7d45f5ce2460)
     /// - Parameters:
@@ -86,8 +85,12 @@ public extension WWSignInWith3rd.Wechat {
         request.state = "3939889"
         
         WXApi.sendAuthReq(request, viewController: viewController, delegate: self) { isSuccess in
-            if (!isSuccess) { self.completionBlock?(.failure(Constant.MyError.unknown)) }
-            viewController.presentedViewController?.presentationController?.delegate = self
+           
+            if (!isSuccess) { self.completionBlock?(.failure(WWSignInWith3rd.CustomError.unknown)) }
+            
+            if let presentationController = viewController.presentedViewController?.presentationController {
+                presentationController.delegate = self
+            }
         }
     }
     
@@ -112,13 +115,12 @@ public extension WWSignInWith3rd.Wechat {
         }
     }
     
-    /// [在外部由URL Scheme開啟 -> application(_:open:options:)](https://www.hangge.com/blog/cache/detail_1042.html)
+    /// [在外部由URL Scheme開啟](https://www.hangge.com/blog/cache/detail_1042.html)
     /// - Parameters:
     ///   - app: [UIApplication](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Launching_a_Mini_Program/iOS_Development_example.html)
     ///   - url: [URL](https://www.ctolib.com/topics-132328.html)
-    ///   - options: [UIApplication.OpenURLOptionsKey: Any]
     /// - Returns: [Bool](https://www.imtqy.com/MiniProgram-navigate.html)
-    func canOpenURL(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    func canOpenURL(_ url: URL) -> Bool {
         
         guard let appid = appId,
               url.absoluteString.contains(appid)
@@ -129,13 +131,11 @@ public extension WWSignInWith3rd.Wechat {
         return WXApi.handleOpen(url, delegate: self)
     }
     
-    /// [在外部由UniversalLink開啟 -> application(_:continue:restorationHandler:)](https://blog.csdn.net/mo_xiao_mo/article/details/60954116)
+    /// [在外部由UniversalLink開啟](https://blog.csdn.net/mo_xiao_mo/article/details/60954116)
     /// - Parameters:
-    ///   - application: UIApplication
     ///   - userActivity: NSUserActivity
-    ///   - restorationHandler: [UIUserActivityRestoring]?
     /// - Returns: Bool
-    func canOpenUniversalLink(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    func canOpenUniversalLink(userActivity: NSUserActivity) -> Bool {
         return WXApi.handleOpenUniversalLink(userActivity, delegate: self)
     }
     
@@ -159,7 +159,7 @@ private extension WWSignInWith3rd.Wechat {
               response.errStr.isEmpty,
               let code = response.code
         else {
-            self.completionBlock?(.failure(Constant.MyError.isCancel)); return
+            self.completionBlock?(.failure(WWSignInWith3rd.CustomError.isCancel)); return
         }
         
         self.code = code

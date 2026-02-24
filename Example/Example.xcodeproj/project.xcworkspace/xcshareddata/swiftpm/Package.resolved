@@ -1,21 +1,22 @@
 {
+  "originHash" : "6476c846bd0b8b8509d130080552e961a12438546acdcf70e34b7366d58e3377",
   "pins" : [
     {
       "identity" : "wechatopensdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yanyin1986/WechatOpenSDK",
       "state" : {
-        "revision" : "8d2c4051094c8043326e40f21e6f8371d20a33a2",
-        "version" : "2.0.2"
+        "revision" : "291a3f40fd03ce23d193e7b761d79bcbb12eb8a9",
+        "version" : "2.0.7"
       }
     },
     {
       "identity" : "wwprint",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/William-Weng/WWPrint.git",
+      "location" : "https://github.com/William-Weng/WWPrint",
       "state" : {
-        "revision" : "6b70fabaa1dbeac95b224384819e231a1220900a",
-        "version" : "1.2.0"
+        "revision" : "8f5928f5d36624d77f8fc563fd8e31a59cfac6b6",
+        "version" : "1.3.1"
       }
     },
     {
@@ -23,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWSignInWith3rd_Apple",
       "state" : {
-        "revision" : "1ce4cd07417ccce606d507db07f5c5b6b57e5a3e",
-        "version" : "1.0.2"
+        "revision" : "70378fd27b11179e59f877ac21dbbc890987deae",
+        "version" : "1.1.4"
       }
     },
     {
@@ -32,10 +33,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWSignInWith3rd_Wechat",
       "state" : {
-        "branch" : "main",
-        "revision" : "68915564d322a8116d467d4c308283dd73efaaa5"
+        "revision" : "d903e0d69f94555ebe99231fcfeee5f9232033d6",
+        "version" : "1.1.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
