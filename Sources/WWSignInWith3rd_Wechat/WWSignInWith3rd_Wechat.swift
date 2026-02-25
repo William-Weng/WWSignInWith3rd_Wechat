@@ -12,7 +12,7 @@ import WechatOpenSDK
 // MARK: - 第三方登入
 extension WWSignInWith3rd {
     
-    /// [WechatOpenSDK - 2.0.0](https://github.com/yanyin1986/WechatOpenSDK)
+    /// [WechatOpenSDK - 2.0.7](https://github.com/yanyin1986/WechatOpenSDK)
     open class Wechat: NSObject {
         
         public static let shared = Wechat()
@@ -29,18 +29,25 @@ extension WWSignInWith3rd {
     }
 }
 
+extension WWSignInWith3rd.Wechat: WXApiDelegate {}
+extension WWSignInWith3rd.Wechat: UIAdaptivePresentationControllerDelegate {}
+
 // MARK: - WXApiDelegate
-extension WWSignInWith3rd.Wechat: WXApiDelegate {
+public extension WWSignInWith3rd.Wechat {
     
-    public func onReq(_ req: BaseReq) { requestBlock?(req) }
-    public func onResp(_ resp: BaseResp) { loginInformation(with: resp) }
+    func onReq(_ req: BaseReq) { requestBlock?(req) }
+    func onResp(_ resp: BaseResp) { loginInformation(with: resp) }
 }
 
 // MARK: - UIAdaptivePresentationControllerDelegate
-extension WWSignInWith3rd.Wechat: UIAdaptivePresentationControllerDelegate {
+public extension WWSignInWith3rd.Wechat {
     
-    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         self.completionBlock?(.failure(WWSignInWith3rd.CustomError.isCancel))
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .automatic
     }
 }
 
@@ -73,24 +80,31 @@ public extension WWSignInWith3rd.Wechat {
     /// [登入 - 網頁 / APP](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Share_and_Favorites/iOS.html)
     /// - Parameters:
     ///   - viewController: [UIViewController](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/ios-13-的-present-modally-變成更方便的卡片設計-fb6b31f0e20e)
+    ///   - state: 唯一碼
     ///   - requestAction: [((BaseReq) -> Void)?](https://www.jianshu.com/p/1b744a97e63d)
     ///   - completionAction: ((Result<[String: Any]?, Error>) -> Void)?
-    func login(presenting viewController: UIViewController, requestAction: ((BaseReq) -> Void)? = nil, completionAction: ((Result<[String: Any]?, Error>) -> Void)?) {
+    func login(presenting viewController: UIViewController, state: String = "3939889", requestAction: ((BaseReq) -> Void)? = nil, completionAction: ((Result<[String: Any]?, Error>) -> Void)?) {
+        
+        let request = SendAuthReq()
+        
+        request.scope = "snsapi_userinfo"
+        request.state = state
         
         requestBlock = requestAction
         completionBlock = completionAction
-        
-        let request = SendAuthReq()
-        request.scope = "snsapi_userinfo"
-        request.state = "3939889"
-        
+                
         WXApi.sendAuthReq(request, viewController: viewController, delegate: self) { isSuccess in
            
             if (!isSuccess) { self.completionBlock?(.failure(WWSignInWith3rd.CustomError.unknown)) }
             
-            if let presentationController = viewController.presentedViewController?.presentationController {
-                presentationController.delegate = self
+            guard let presentedViewController = viewController.presentedViewController as? UINavigationController,
+                  let presentationController = presentedViewController.presentationController
+            else {
+                return
             }
+            
+            presentedViewController.view.tintColor = .systemBlue
+            presentationController.delegate = self
         }
     }
     
@@ -106,6 +120,7 @@ public extension WWSignInWith3rd.Wechat {
     func openMiniProgram(with identifier: String, path: String? = nil, type: WXMiniProgramType = .release, completion: ((Bool) -> Void)?) {
         
         let request = WXLaunchMiniProgramReq.object()
+        
         request.userName = identifier
         request.miniProgramType = type
         request.path = path

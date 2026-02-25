@@ -50,7 +50,7 @@ dependencies: [
 |函式|功能|
 |-|-|
 |configure(appId:secret:universalLink:)|線上註冊參數|
-|login(presenting:requestAction:completionAction:)|登入 - 網頁 / APP|
+|login(presenting:state:requestAction:completionAction:)|登入 - 網頁 / APP|
 |logout()|沒有登出功能|
 |openMiniProgram(with:path:type:completion:)|開啟微信小程序|
 |canOpenURL(_:)|在外部由URL Scheme開啟|

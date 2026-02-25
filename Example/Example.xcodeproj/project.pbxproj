@@ -15,7 +15,8 @@
 		8130039027D5D18100436128 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8130038F27D5D18100436128 /* Constant.swift */; };
 		8130039227D5D19000436128 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8130039127D5D19000436128 /* Extension.swift */; };
 		814E8CC12F4D8E8300DE938F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814E8CC02F4D8E8300DE938F /* SceneDelegate.swift */; };
-		814E8CC42F4D984F00DE938F /* WWSignInWith3rd_Wechat in Frameworks */ = {isa = PBXBuildFile; productRef = 814E8CC32F4D984F00DE938F /* WWSignInWith3rd_Wechat */; };
+		81AA5F442F4EA9AB0007FCA0 /* WWSignInWith3rd_Wechat in Frameworks */ = {isa = PBXBuildFile; productRef = 81AA5F432F4EA9AB0007FCA0 /* WWSignInWith3rd_Wechat */; };
+		81AA5F472F4ECDAF0007FCA0 /* WWSignInWith3rd_Wechat in Frameworks */ = {isa = PBXBuildFile; productRef = 81AA5F462F4ECDAF0007FCA0 /* WWSignInWith3rd_Wechat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +38,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				814E8CC42F4D984F00DE938F /* WWSignInWith3rd_Wechat in Frameworks */,
+				81AA5F472F4ECDAF0007FCA0 /* WWSignInWith3rd_Wechat in Frameworks */,
+				81AA5F442F4EA9AB0007FCA0 /* WWSignInWith3rd_Wechat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +144,8 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				814E8CC32F4D984F00DE938F /* WWSignInWith3rd_Wechat */,
+				81AA5F432F4EA9AB0007FCA0 /* WWSignInWith3rd_Wechat */,
+				81AA5F462F4ECDAF0007FCA0 /* WWSignInWith3rd_Wechat */,
 			);
 			productName = Example;
 			productReference = 3DBCD87026F198EF00522E3B /* Example.app */;
@@ -173,7 +176,7 @@
 			);
 			mainGroup = 3DBCD86726F198EF00522E3B;
 			packageReferences = (
-				814E8CC22F4D984F00DE938F /* XCRemoteSwiftPackageReference "WWSignInWith3rd_Wechat" */,
+				81AA5F452F4ECDAF0007FCA0 /* XCRemoteSwiftPackageReference "WWSignInWith3rd_Wechat" */,
 			);
 			productRefGroup = 3DBCD87126F198EF00522E3B /* Products */;
 			projectDirPath = "";
@@ -432,20 +435,24 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		814E8CC22F4D984F00DE938F /* XCRemoteSwiftPackageReference "WWSignInWith3rd_Wechat" */ = {
+		81AA5F452F4ECDAF0007FCA0 /* XCRemoteSwiftPackageReference "WWSignInWith3rd_Wechat" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/William-Weng/WWSignInWith3rd_Wechat";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 1.2.1;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		814E8CC32F4D984F00DE938F /* WWSignInWith3rd_Wechat */ = {
+		81AA5F432F4EA9AB0007FCA0 /* WWSignInWith3rd_Wechat */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 814E8CC22F4D984F00DE938F /* XCRemoteSwiftPackageReference "WWSignInWith3rd_Wechat" */;
+			productName = WWSignInWith3rd_Wechat;
+		};
+		81AA5F462F4ECDAF0007FCA0 /* WWSignInWith3rd_Wechat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81AA5F452F4ECDAF0007FCA0 /* XCRemoteSwiftPackageReference "WWSignInWith3rd_Wechat" */;
 			productName = WWSignInWith3rd_Wechat;
 		};
 /* End XCSwiftPackageProductDependency section */
